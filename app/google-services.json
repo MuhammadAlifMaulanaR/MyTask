@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "116175563109",
+    "firebase_url": "https://mytask-53d42-default-rtdb.firebaseio.com",
+    "project_id": "mytask-53d42",
+    "storage_bucket": "mytask-53d42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116175563109:android:501892914b188d7579598c",
+        "android_client_info": {
+          "package_name": "al.project.mytask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzYyj6MV_0xNR49eR6HOWGoMi7pY4eqro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

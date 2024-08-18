@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+<!--    tools:context=".view.AddActivity">-->
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/icon_back"
+        android:id="@+id/btn_back"
+        android:contentDescription="@string/app_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Create New Task"
+        android:textColor="@color/black"
+        android:layout_marginTop="9dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/edt_task_name"
+        android:layout_width="match_parent"
+        android:layout_marginTop="82dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_edittext_rounded"
+        android:fontFamily="@font/poppins"
+        android:hint="Enter task name"
+        android:padding="14dp"
+        android:textSize="14sp" />
+
+    <EditText
+        android:layout_below="@id/edt_task_name"
+        android:id="@+id/edt_task_category"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:hint="Select category"
+        android:padding="14dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_edittext_rounded"
+        android:fontFamily="@font/poppins"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:layout_below="@+id/edt_task_category"
+        android:id="@+id/edt_task_calender"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext_rounded"
+        android:drawableEnd="@drawable/icon_calender"
+        android:fontFamily="@font/poppins"
+        android:hint="Select date"
+        android:padding="14dp"
+        android:textSize="14sp"
+        android:focusable="false"
+        android:inputType="none" />
+
+    <EditText
+        android:layout_below="@id/edt_task_calender"
+        android:id="@+id/edt_task_description"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_edittext_rounded"
+        android:fontFamily="@font/poppins"
+        android:hint="Enter description"
+        android:padding="14dp"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"/>
+
+
+    <Button
+        android:id="@+id/btn_create_task"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/maron"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Create Task"
+        android:textAllCaps="false"
+        android:textSize="16sp" />
+
+</RelativeLayout>
