@@ -38,15 +38,13 @@ public class activity_edit_task extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_edit_task);
 
-            // Initialize Firebase Reference
             databaseReference = FirebaseDatabase.getInstance().getReference("tasks");
-
 
             taskId = getIntent().getStringExtra("taskId");
 
             if (taskId == null) {
                 Toast.makeText(this, "Error: Task ID is missing.", Toast.LENGTH_LONG).show();
-                finish();  // Exit activity if no ID is found
+                finish();
                 return;
             }
 
@@ -57,18 +55,23 @@ public class activity_edit_task extends AppCompatActivity {
 //            categorySpinner = findViewById(R.id.category_spinner);
 //            categorySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, new String[]{"Life", "Sport", "Education"}));
 
+            String taskId = getIntent().getStringExtra("taskId");
+            String taskName = getIntent().getStringExtra("taskTitle");
+            String taskCalender = getIntent().getStringExtra("taskDate");
+            String taskDescription = getIntent().getStringExtra("taskDescription");
 
             taskNameInput = findViewById(R.id.edit_task_name);
             taskCategoryInput = findViewById(R.id.edit_task_category);
             deadlineInput = findViewById(R.id.edit_task_calender);
             descriptionInput = findViewById(R.id.edit_task_description);
 
-            ImageView backButton = findViewById(R.id.btn_back);
+            ImageView backButton = findViewById(R.id.btn_backk);
             backButton.setOnClickListener(v -> finish());
 
             // mengambil data kemudian dan memberikan data ke intent
+            // categorySpinner.setText(getIntent().getStringExtra("category"), false);
             taskNameInput.setText(getIntent().getStringExtra("taskName"));
-//            categorySpinner.setText(getIntent().getStringExtra("category"), false);
+            taskCategoryInput.setText(getIntent().getStringExtra("Category"));
             deadlineInput.setText(getIntent().getStringExtra("deadline"));
             descriptionInput.setText(getIntent().getStringExtra("description"));
 
@@ -77,8 +80,11 @@ public class activity_edit_task extends AppCompatActivity {
             Log.d("activity_edit_task", "Received description: " + getIntent().getStringExtra("description"));
 
             findViewById(R.id.btn_create_task).setOnClickListener(v -> saveTask());
-            findViewById(R.id.btn_back).setOnClickListener(view -> {
-                Intent intent = new Intent(activity_edit_task.this, MainActivity.class);
+
+            findViewById(R.id.btn_backk).setOnClickListener(view -> {
+                Intent intent = new Intent(activity_edit_task.this, activity_list_task.class);
+                startActivity(intent);
+                finish();
             });
 
             deadlineInput.setOnClickListener(this::showDatePicker);

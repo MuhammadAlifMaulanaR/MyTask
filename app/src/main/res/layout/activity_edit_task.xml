@@ -11,7 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/icon_back"
-        android:id="@+id/btn_back"
+        android:id="@+id/btn_backk"
         android:contentDescription="@string/app_name"/>
 
     <TextView
