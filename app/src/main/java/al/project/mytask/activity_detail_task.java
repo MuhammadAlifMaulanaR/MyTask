@@ -29,6 +29,7 @@ public class activity_detail_task extends AppCompatActivity {
             databaseReference = FirebaseDatabase.getInstance().getReference("tasks");
 
             TextView title = findViewById(R.id.tv_name_task);
+            TextView category = findViewById(R.id.tv_category);
             TextView date = findViewById(R.id.tv_date);
             TextView description = findViewById(R.id.tv_description);
             ImageView backButton = findViewById(R.id.btn_kembali);
@@ -37,11 +38,13 @@ public class activity_detail_task extends AppCompatActivity {
 
             // Mendapatkan taskId dan detail lainnya dari Intent
             String taskId = getIntent().getStringExtra("taskId");
-            String taskName = getIntent().getStringExtra("taskTitle");
-            String taskCalender = getIntent().getStringExtra("taskDate");
-            String taskDescription = getIntent().getStringExtra("taskDescription");
+            String taskName = getIntent().getStringExtra("taskName");
+            String taskCategory = getIntent().getStringExtra("category");
+            String taskCalender = getIntent().getStringExtra("calender");
+            String taskDescription = getIntent().getStringExtra("description");
 
             title.setText(taskName);
+            category.setText(taskCategory);
             date.setText(taskCalender);
             description.setText(taskDescription);
 
@@ -50,8 +53,9 @@ public class activity_detail_task extends AppCompatActivity {
                 Intent editIntent = new Intent(activity_detail_task.this, activity_edit_task.class);
                 editIntent.putExtra("taskId", taskId);
                 editIntent.putExtra("taskName", taskName);
-                editIntent.putExtra("taskCalender", taskCalender);
-                editIntent.putExtra("taskDescription", taskDescription);
+                editIntent.putExtra("category", taskCategory);
+                editIntent.putExtra("calender", taskCalender);
+                editIntent.putExtra("description", taskDescription);
                 startActivity(editIntent);
             });
 

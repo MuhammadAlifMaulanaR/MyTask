@@ -34,10 +34,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), activity_detail_task.class);
             intent.putExtra("taskId", task.getTaskId());
-            intent.putExtra("taskTitle", task.getTaskName());
-            intent.putExtra("taskDate", task.getCalender());
-            intent.putExtra("taskCategory", task.getCategory());
-            intent.putExtra("taskDescription", task.getDescription());
+            intent.putExtra("taskName", task.getTaskName());
+            intent.putExtra("calender", task.getCalender());
+            intent.putExtra("category", task.getCategory());
+            intent.putExtra("description", task.getDescription());
             view.getContext().startActivity(intent);
         });
         holder.taskData.setText(task.getTaskName());

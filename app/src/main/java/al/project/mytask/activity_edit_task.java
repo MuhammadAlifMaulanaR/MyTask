@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class activity_edit_task extends AppCompatActivity {
 
-        private EditText taskNameInput, taskCategoryInput, deadlineInput, descriptionInput;
+        private EditText taskNameInput, taskCategoryInput, calenderInput, descriptionInput;
 //        private AutoCompleteTextView categorySpinner;
         private DatabaseReference databaseReference;
         private String taskId;  // Variable to store task ID
@@ -56,13 +56,14 @@ public class activity_edit_task extends AppCompatActivity {
 //            categorySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, new String[]{"Life", "Sport", "Education"}));
 
             String taskId = getIntent().getStringExtra("taskId");
-            String taskName = getIntent().getStringExtra("taskTitle");
-            String taskCalender = getIntent().getStringExtra("taskDate");
-            String taskDescription = getIntent().getStringExtra("taskDescription");
+            String taskName = getIntent().getStringExtra("taskName");
+            String taskCategory = getIntent().getStringExtra("category");
+            String taskCalender = getIntent().getStringExtra("calender");
+            String taskDescription = getIntent().getStringExtra("description");
 
             taskNameInput = findViewById(R.id.edit_task_name);
             taskCategoryInput = findViewById(R.id.edit_task_category);
-            deadlineInput = findViewById(R.id.edit_task_calender);
+            calenderInput = findViewById(R.id.edit_task_calender);
             descriptionInput = findViewById(R.id.edit_task_description);
 
             ImageView backButton = findViewById(R.id.btn_backk);
@@ -71,12 +72,13 @@ public class activity_edit_task extends AppCompatActivity {
             // mengambil data kemudian dan memberikan data ke intent
             // categorySpinner.setText(getIntent().getStringExtra("category"), false);
             taskNameInput.setText(getIntent().getStringExtra("taskName"));
-            taskCategoryInput.setText(getIntent().getStringExtra("Category"));
-            deadlineInput.setText(getIntent().getStringExtra("deadline"));
+            taskCategoryInput.setText(getIntent().getStringExtra("category"));
+            calenderInput.setText(getIntent().getStringExtra("calender"));
             descriptionInput.setText(getIntent().getStringExtra("description"));
 
             Log.d("activity_edit_task", "Received taskName: " + getIntent().getStringExtra("taskName"));
-            Log.d("activity_edit_task", "Received deadline: " + getIntent().getStringExtra("deadline"));
+            Log.d("activity_edit_task", "Received category: " + getIntent().getStringExtra("category"));
+            Log.d("activity_edit_task", "Received calender: " + getIntent().getStringExtra("calender"));
             Log.d("activity_edit_task", "Received description: " + getIntent().getStringExtra("description"));
 
             findViewById(R.id.btn_create_task).setOnClickListener(v -> saveTask());
@@ -87,13 +89,13 @@ public class activity_edit_task extends AppCompatActivity {
                 finish();
             });
 
-            deadlineInput.setOnClickListener(this::showDatePicker);
+            calenderInput.setOnClickListener(this::showDatePicker);
         }
 
         public void showDatePicker(View view) {
             final Calendar calendar = Calendar.getInstance();
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    (datePicker, year, monthOfYear, dayOfMonth) -> deadlineInput.setText(String.format("%02d/%02d/%04d", dayOfMonth, monthOfYear + 1, year)),
+                    (datePicker, year, monthOfYear, dayOfMonth) -> calenderInput.setText(String.format("%02d/%02d/%04d", dayOfMonth, monthOfYear + 1, year)),
                     calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         }
@@ -101,8 +103,8 @@ public class activity_edit_task extends AppCompatActivity {
         private void saveTask() {
             Map<String, Object> updates = new HashMap<>();
             updates.put("taskName", taskNameInput.getText().toString());
-//            updates.put("category", categorySpinner.getText().toString());
-            updates.put("deadline", deadlineInput.getText().toString());
+            updates.put("category", taskCategoryInput.getText().toString());
+            updates.put("calender", calenderInput.getText().toString());
             updates.put("description", descriptionInput.getText().toString());
 
             updateTaskById(updates);
@@ -122,9 +124,10 @@ public class activity_edit_task extends AppCompatActivity {
 
                         Intent intent = new Intent(activity_edit_task.this, activity_list_task.class);
                         intent.putExtra("taskId", taskId);
-                        intent.putExtra("taskTitle", updates.get("taskName").toString());
-                        intent.putExtra("taskDate", updates.get("deadline").toString());
-                        intent.putExtra("taskDescription", updates.get("description").toString());
+                        intent.putExtra("taskName", updates.get("taskName").toString());
+                        intent.putExtra("category", updates.get("category").toString());
+                        intent.putExtra("calender", updates.get("calender").toString());
+                        intent.putExtra("description", updates.get("description").toString());
                         startActivity(intent);
                         finish();
                     })
